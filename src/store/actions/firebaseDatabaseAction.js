@@ -1,12 +1,12 @@
 import firebase from "../firebase/firebase";
 import * as actionTypes from "./actionTypes";
-import {
-  uiStartLoading,
-  uiStopLoading,
-  uiSetLoading,
-  uiSetStatus,
-  setModalTrigger
-} from "./index";
+// import {
+//   uiStartLoading,
+//   uiStopLoading,
+//   uiSetLoading,
+//   uiSetStatus,
+//   setModalTrigger
+// } from "./index";
 
 export const addNewPost = postData => {
   return dispatch => {
@@ -71,7 +71,7 @@ export const getDataFirebase = () => {
             });
           }
 
-          console.log(dataArray);
+          // console.log(dataArray);
           dispatch(setReducer(actionTypes.SET_POSTS, dataArray));
         },
         function(error) {

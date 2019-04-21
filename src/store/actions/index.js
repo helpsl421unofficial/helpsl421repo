@@ -1,16 +1,5 @@
 /**
  *  ========================================
- *  ============ Authentication ============
- *  ========================================
- */
-export {
-  authenticationFirebase,
-  signOutFirebase,
-  authCheckState
-} from "./firebaseAuthAction";
-
-/**
- *  ========================================
  *  =========== Database - CURD ============
  *  ========================================
  */
@@ -22,12 +11,12 @@ export { addNewPost, getDataFirebase } from "./firebaseDatabaseAction";
  *  ========================================
  */
 
-export {
-  uiStartLoading,
-  uiStopLoading,
-  uiSetStatus,
-  uiSetLoading,
-  uiIsModalOpen,
-  setExamTime,
-  setModalTrigger
-} from "./uiAction";
+// export {
+//   uiStartLoading,
+//   uiStopLoading,
+//   uiSetStatus,
+//   uiSetLoading,
+//   uiIsModalOpen,
+//   setExamTime,
+//   setModalTrigger
+// } from "./uiAction";

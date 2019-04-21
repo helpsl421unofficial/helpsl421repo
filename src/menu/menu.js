@@ -237,19 +237,31 @@ class Menu extends Component {
   render() {
     return (
       <React.Fragment>
-        <ul className="nav justify-content-center">
-          {/* <li className="nav-item">
-          <NavLink
-            activeClassName="activeMainNav"
-            to="/"
-            exact
-            className="nav-link"
+        <div className="row">
+          <div
+            className="col-8"
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center"
+            }}
           >
-            Home
-          </NavLink>
-        </li> */}
-          <li className="nav-item helpsl-hand ">
-            <div
+            <div>
+              <div>
+                <h4>
+                  Help a fellow <strong>Sri Lankan</strong> to find their loved
+                  ones
+                </h4>
+              </div>
+
+              <div>
+                <p>A tiny support to help you find your missing loved ones</p>
+              </div>
+            </div>
+          </div>
+          <div className="col-4">
+            <MDBBtn
+              color="success"
               className="nav-link"
               onClick={() => {
                 this.setState({
@@ -263,12 +275,26 @@ class Menu extends Component {
                 this.openPopupbox();
               }}
             >
-              Add New +
-            </div>
-          </li>
-          <li className="nav-item helpsl-hand ">
-            <div className="nav-link">Feedback/ Contact</div>
-          </li>
+              Add New
+            </MDBBtn>
+          </div>
+        </div>
+        <ul className="nav justify-content-center">
+          {/* <li className="nav-item">
+          <NavLink
+            activeClassName="activeMainNav"
+            to="/"
+            exact
+            className="nav-link"
+          >
+            Home
+          </NavLink>
+        </li> */}
+          <li className="nav-item helpsl-hand " />
+
+          {/* <li className="nav-item helpsl-hand ">
+            <MDBBtn color="info">Feedback/ Contact</MDBBtn>
+          </li> */}
         </ul>
         <PopupboxContainer />
       </React.Fragment>
