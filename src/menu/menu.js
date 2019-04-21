@@ -16,12 +16,52 @@ class Menu extends Component {
     imageDisplay: ""
   };
 
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps.loading !== this.props.loading) {
+      this.updateForm();
+    }
+    if (prevProps.loading && !this.props.loading) {
+      PopupboxManager.close();
+    }
+  }
   updateForm = () => {
+    let btn_loading = null;
+    if (this.state.con1 !== "" && this.state.imageDisplay !== "") {
+      if (this.props.loading) {
+        btn_loading = (
+          <>
+            <div className="spinner-border" role="status">
+              <span className="sr-only">Loading...</span>
+            </div>
+          </>
+        );
+      } else {
+        btn_loading = (
+          <MDBBtn
+            rounded
+            color="success"
+            onClick={() =>
+              this.props.onAddPost({
+                data: {
+                  title: this.state.title,
+                  con1: this.state.con1,
+                  con2: this.state.con2,
+                  desc: this.state.desc,
+                  image: this.state.image
+                }
+              })
+            }
+          >
+            Add
+          </MDBBtn>
+        );
+      }
+    }
     let content = (
       <div className="row">
         <div className="col-md-12 p-2">
           <div className="row">
-            <div className="col-8">Add New</div>
+            <div className="col-8">{btn_loading}</div>
             <div
               className="col-4"
               style={{ display: "flex", justifyContent: "flex-end" }}
@@ -94,27 +134,6 @@ class Menu extends Component {
             </div>
           </div>
         </div>
-        {this.state.con1 !== "" && this.state.imageDisplay !== "" ? (
-          <div className="col-md-12 p-2">
-            <MDBBtn
-              rounded
-              color="success"
-              onClick={() =>
-                this.props.onAddPost({
-                  data: {
-                    title: this.state.title,
-                    con1: this.state.con1,
-                    con2: this.state.con2,
-                    desc: this.state.desc,
-                    image: this.state.image
-                  }
-                })
-              }
-            >
-              Add
-            </MDBBtn>
-          </div>
-        ) : null}
       </div>
     );
 
@@ -160,7 +179,7 @@ class Menu extends Component {
       <div className="row">
         <div className="col-md-12 p-2">
           <div className="row">
-            <div className="col-8">Add New</div>
+            <div className="col-8" />
             <div
               className="col-4"
               style={{ display: "flex", justifyContent: "flex-end" }}
@@ -229,7 +248,7 @@ class Menu extends Component {
           enable: false
         },
         fadeIn: true,
-        fadeInSpeed: 500
+        fadeInSpeed: 200
       }
     });
   };
@@ -264,15 +283,19 @@ class Menu extends Component {
               color="success"
               className="nav-link"
               onClick={() => {
-                this.setState({
-                  title: "",
-                  con1: "",
-                  con2: "",
-                  desc: "",
-                  image: "",
-                  imageDisplay: ""
-                });
                 this.openPopupbox();
+                // console.log(this.state);
+                // this.setState(
+                //   {
+                //     title: "",
+                //     con1: "",
+                //     con2: "",
+                //     desc: "",
+                //     image: "",
+                //     imageDisplay: ""
+                //   },
+                //   () => this.openPopupbox()
+                // );
               }}
             >
               Add New
@@ -303,7 +326,9 @@ class Menu extends Component {
 }
 
 const mapStateToProps = state => {
-  return {};
+  return {
+    loading: state.ui.isLoading
+  };
 };
 
 const mapDispatchToProps = dispatch => {

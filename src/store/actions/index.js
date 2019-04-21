@@ -11,12 +11,4 @@ export { addNewPost, getDataFirebase } from "./firebaseDatabaseAction";
  *  ========================================
  */
 
-// export {
-//   uiStartLoading,
-//   uiStopLoading,
-//   uiSetStatus,
-//   uiSetLoading,
-//   uiIsModalOpen,
-//   setExamTime,
-//   setModalTrigger
-// } from "./uiAction";
+export { uiStartLoading, uiStopLoading } from "./uiAction";

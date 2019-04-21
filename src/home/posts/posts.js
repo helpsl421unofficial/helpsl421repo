@@ -77,7 +77,8 @@ class Posts extends Component {
     let id = obj.photo.id ? obj.photo.id : Math.random();
     let title = obj.photo.title ? obj.photo.title : "Help!";
     let pic = obj.photo.src ? obj.photo.src : "";
-    let contact = obj.photo.contact ? obj.photo.contact : [];
+    let con1 = obj.photo.con1 ? obj.photo.con1 : "";
+    let con2 = obj.photo.con2 ? obj.photo.con2 : "";
     let desc = obj.photo.desc ? obj.photo.desc : "";
     const content = (
       <div className="row">
@@ -102,18 +103,19 @@ class Posts extends Component {
         <div className="col-md-12 pt-3 pb-3 border-bottom">
           <img width="100%" src={pic} alt={"post_" + id} />
         </div>
-        {contact.length > 0 ? (
-          <div className="col-md-12 pt-3 pb-3 border-bottom">
-            Contact
-            {contact.map((con, index) => (
-              <h1 key={id + "_cont_" + index}>{con}</h1>
-            ))}
+
+        <div className="col-md-12 pt-3 pb-3 border-bottom">
+          Contact
+          <h1>{con1}</h1>
+          <h1>{con2}</h1>
+        </div>
+
+        {desc ? (
+          <div className="col-md-12 pt-3">
+            Description
+            <p>{desc}</p>
           </div>
         ) : null}
-        <div className="col-md-12 pt-3">
-          Description
-          <p>{desc}</p>
-        </div>
       </div>
     );
     PopupboxManager.open({
@@ -123,7 +125,7 @@ class Posts extends Component {
           enable: false
         },
         fadeIn: true,
-        fadeInSpeed: 500
+        fadeInSpeed: 200
       }
     });
   }

@@ -1,15 +1,10 @@
 import firebase from "../firebase/firebase";
 import * as actionTypes from "./actionTypes";
-// import {
-//   uiStartLoading,
-//   uiStopLoading,
-//   uiSetLoading,
-//   uiSetStatus,
-//   setModalTrigger
-// } from "./index";
+import { uiStartLoading, uiStopLoading } from "./index";
 
 export const addNewPost = postData => {
   return dispatch => {
+    dispatch(uiStartLoading());
     // console.log(postData.data.image);
     let uploadImages = firebase.functions().httpsCallable("storeImages");
     uploadImages(JSON.stringify({ image: postData.data.image }))
@@ -32,10 +27,12 @@ export const addNewPost = postData => {
             addedDate: Date.parse(Date())
           })
           .then(res => {
+            dispatch(uiStopLoading());
             // console.log(res);
           });
       })
       .catch(function(error) {
+        dispatch(uiStopLoading());
         console.log(error);
       });
   };
